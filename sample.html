@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanka Raj Acharya</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #12315B;
+            --text-color: #fff;
+            --bg-color: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .menu li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sections (Generic) */
+        section {
+            padding: 150px 10% 80px;
+            text-align: center;
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* HOME SECTION */
+        #home {
+            /* The home section is side-by-side text & image */
+            flex-direction: row;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .home-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .home-text h1 {
+            font-size: 42px;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+
+        .home-text span {
+            font-size: 22px;
+            font-weight: normal;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            #home {
+                flex-direction: column;
+            }
+
+            .home-text {
+                text-align: center;
+            }
+        }
+
+        /* AFFILIATIONS SECTION */
+        #affiliations {
+            align-items: center;
+        }
+
+        .affiliations-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .affiliation-item {
+            width: 250px;
+            text-align: center;
+        }
+
+        .affiliation-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .affiliation-item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* WORKS SECTION */
+        #works {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .work-subsection {
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .work-subsection h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .video-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px;
+            white-space: nowrap;
+            scrollbar-width: none;
+            justify-content: center;
+        }
+
+        .video-scroll iframe {
+            width: 400px;
+            height: 225px;
+            flex: 0 0 auto;
+            border-radius: 10px;
+        }
+
+        .book-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .book-section img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* GALLERY SECTION */
+        #gallery {
+            align-items: flex-start;
+            text-align: center;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* CONTACT SECTION */
+        #contact {
+            align-items: center;
+        }
+
+        .contact-info {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-color);
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">TANKA RAJ ACHARYA</div>
+        <ul class="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#affiliations">Affiliations</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="home-text">
+            <h1>Tanka Raj Acharya</h1>
+            <span>Entrepreneur | Social Activist | Artist</span>
+        </div>
+        <img src="images/profile.png" alt="Tanka Raj Acharya" class="profile-image">
+    </section>
+
+    <!-- AFFILIATIONS SECTION -->
+    <section id="affiliations">
+        <h2>Affiliations</h2>
+        <div class="affiliations-container">
+            <div class="affiliation-item">
+                <img src="images/pathshala.png" alt="Pathshala Nepal Foundation">
+                <h3>Managing Director/Founder</h3>
+            </div>
+            <div class="affiliation-item">
+                <img src="images/medhavi.png" alt="Medhavi College">
+                <h3>Managing Director/Founder</h3>
+            </div>
+            <div class="affiliation-item">
+                <img src="images/sisnupani.jpg" alt="Sisnupani Nepal">
+                <h3>General Secretary & Founder</h3>
+                <p>A satirical platform dedicated to social transformation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKS SECTION -->
+    <section id="works">
+        <h2>Works</h2>
+
+        <!-- Performances Subsection -->
+        <div class="work-subsection">
+            <h3>Performances (In Association with Sisnupani)</h3>
+            <div class="video-scroll">
+                <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk"></iframe>
+                <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+                <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+            </div>
+        </div>
+
+        <!-- Interviews Subsection -->
+        <div class="work-subsection">
+            <h3>Interviews</h3>
+            <div class="video-scroll">
+                <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk"></iframe>
+                <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+                <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+            </div>
+        </div>
+
+        <!-- Articles Subsection -->
+        <div class="work-subsection">
+            <h3>Articles</h3>
+            <div class="video-scroll">
+                <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk"></iframe>
+                <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+                <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+            </div>
+        </div>
+
+        <!-- Book Subsection -->
+        <div class="work-subsection book-section">
+            <h3>Book</h3>
+            <img src="images/book.png" alt="Toriko Ful" />
+            <p><strong>Toriko Ful</strong> - A collection of satirical poetry.</p>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-container">
+            <img src="images/gallery1.jpg" alt="Gallery Photo 1" />
+            <img src="images/gallery2.jpg" alt="Gallery Photo 2" />
+            <img src="images/gallery3.jpg" alt="Gallery Photo 3" />
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p class="contact-info">Email: <a href="mailto:tankarajacharya@gmail.com">tankarajacharya@gmail.com</a></p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Tanka Raj Acharya. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

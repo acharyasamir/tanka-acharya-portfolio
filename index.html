@@ -2,28 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tanka Raj Acharya</title>
   <style>
-    /* Importing IBM Plex Sans for titles */
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
-
-    /* Attempt to use Reddit Sans for the logo (if available). Otherwise fallback. */
-    @font-face {
-      font-family: 'Reddit Sans';
-      /* Replace with actual font file if you have one */
-      src: local('Reddit Sans'), url('') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-    }
+    /* Import Google Fonts: Poppins for logo, IBM Plex Sans for text */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=IBM+Plex+Sans:wght@400;700&display=swap');
 
     :root {
-      --primary-color: #12315B;
-      --text-color: #fff;
-      --bg-color: #000;
+      --primary-color: #4C9F70;   /* Header/nav background */
+      --bg-color: #1B1B1B;        /* Main page background */
+      --text-color: #F5F5F5;      /* Light text color */
+      --accent-color: #E63946;    /* Accent (if needed) */
+      --card-bg: #2B2B2B;         /* Slightly darker background for cards */
     }
 
-    /* Reset & Body Defaults */
+    /* RESET */
     * {
       margin: 0;
       padding: 0;
@@ -32,209 +25,326 @@
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
-      scroll-behavior: smooth;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      /* generic sans-serif for body text */
-      font-family: sans-serif;
-    }
-
-    /* Headings use IBM Plex Sans */
-    h1, h2, h3 {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 42px;
-    }
-    h2 {
-      font-size: 36px;
-      text-align: center;
-    }
-    h3 {
-      font-size: 28px;
-      text-align: center;
+      scroll-behavior: smooth;
     }
 
-    /* Navbar */
+    /* NAVBAR */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       background-color: var(--primary-color);
-      padding: 15px 20px;
+      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       z-index: 1000;
     }
-    /* Logo: Reddit Sans */
     .logo {
-      font-family: 'Reddit Sans', sans-serif;
-      color: #fff;
+      font-family: 'Poppins', sans-serif;
       font-size: 24px;
-      font-weight: bold;
+      font-weight: 700;
+      color: #fff;
     }
-    /* Menu items: IBM Plex Sans */
     .menu {
       list-style: none;
       display: flex;
-    }
-    .menu li {
-      margin: 0 15px;
+      gap: 20px;
     }
     .menu li a {
       text-decoration: none;
       color: #fff;
       font-size: 18px;
-      font-family: 'IBM Plex Sans', sans-serif;
     }
     .menu li a:hover {
       text-decoration: underline;
     }
-
-    /* Sections (Generic) */
-    section {
-      padding: 150px 10% 80px;
-      flex: 1;
-      min-height: 100vh;
-      display: flex;
+    /* Hamburger Menu (mobile) */
+    .hamburger {
+      display: none;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      cursor: pointer;
+    }
+    .hamburger div {
+      width: 30px;
+      height: 3px;
+      background-color: #fff;
+      margin: 4px 0;
+    }
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* SECTION STYLES */
+    section {
+      padding: 80px 10% 40px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
       text-align: center;
     }
 
     /* HOME SECTION */
     #home {
-      flex-direction: row;
-      gap: 50px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .home-text {
-      flex: 1;
-    }
-    .home-text span {
-      font-size: 22px;
-      font-weight: normal;
+      display: flex;
+      flex-direction: column; /* Photo on top, text below */
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding-top: 120px; /* Extra padding for fixed nav */
+      text-align: center;
     }
     .profile-image {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
       object-fit: cover;
-      flex: 0 0 auto;
+    }
+    .home-text h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    .home-text span {
+      font-size: 18px;
     }
     @media (max-width: 768px) {
-      #home {
-        flex-direction: column;
+      .profile-image {
+        width: 200px;
+        height: 200px;
       }
-      .home-text {
-        text-align: center;
+      .home-text h1 {
+        font-size: 28px;
+      }
+      .home-text span {
+        font-size: 16px;
       }
     }
 
     /* AFFILIATIONS SECTION */
-    #affiliations {
-      align-items: center;
+    #affiliations h2 {
+      margin-bottom: 40px;
     }
     .affiliations-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 40px;
+      gap: 60px; /* Increased gap for better spacing */
       margin-top: 20px;
     }
     .affiliation-item {
       width: 250px;
       text-align: center;
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background-color: var(--card-bg);
     }
     .affiliation-item img {
-      width: 100%;
-      height: 250px;
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 10px;
+      margin-bottom: 10px;
     }
     .affiliation-item h3 {
-      margin-top: 10px;
+      margin-top: 5px;
       font-size: 18px;
-      font-weight: 600;
+    }
+    .affiliation-item p {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .affiliation-links {
+      margin-top: 10px;
+    }
+    .affiliation-links a {
+      margin: 0 5px;
+      display: inline-block;
+    }
+    .affiliation-links img {
+      width: 24px;
+      height: 24px;
     }
 
     /* WORKS SECTION */
     #works {
-      align-items: flex-start;
       text-align: left;
     }
     .work-subsection {
-      margin-bottom: 60px;
-      width: 100%;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    .work-subsection h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .work-subsection p {
+      color: #ccc; /* slightly lighter text for description */
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+    .video-carousel {
+      position: relative;
+      margin: 0 auto;
     }
     .video-scroll {
       display: flex;
       overflow-x: auto;
-      gap: 30px;
+      gap: 20px;
       padding: 20px;
-      white-space: nowrap;
       scrollbar-width: none;
-      justify-content: center;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+    }
+    .video-scroll::-webkit-scrollbar {
+      display: none;
     }
     .video-scroll iframe {
       width: 400px;
       height: 225px;
+      border-radius: 10px;
       flex: 0 0 auto;
-      border-radius: 10px;
+      scroll-snap-align: center;
     }
-    .book-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+    .video-scroll::before,
+    .video-scroll::after {
+      content: "";
+      flex: 0 0 10px;
     }
-    .book-section img {
-      width: 200px;
-      height: auto;
-      border-radius: 10px;
+    @media (max-width: 768px) {
+      .video-scroll iframe {
+        width: 300px;
+        height: 169px;
+      }
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      transition: background-color 0.3s;
+    }
+    .arrow:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+    @media (max-width: 768px) {
+      .arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 1.4rem;
+        line-height: 28px;
+      }
     }
 
     /* GALLERY SECTION */
     #gallery {
-      align-items: flex-start;
-      text-align: center;
+      background-color: var(--bg-color);
+      padding: 80px 10%;
+      color: #fff;
     }
-    .gallery-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      width: 100%;
-      margin-top: 40px;
+    #gallery h2 {
+      margin-bottom: 40px;
     }
-    .gallery-container img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+    .gallery-section {
+      margin-bottom: 50px;
+      position: relative;
+    }
+    .gallery-section h3 {
+      margin-bottom: 20px;
+    }
+    .gallery-scroll {
+      display: flex;
+      overflow: hidden;
+      gap: 15px;
+      padding: 10px;
+      width: 520px; /* ~ two thumbnails (250px each + gap) */
+      margin: 0 auto;
+      scroll-snap-type: x mandatory;
+    }
+    .gallery-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .gallery-scroll img {
+      width: 250px;
+      height: 150px;
       border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      scroll-snap-align: center;
+    }
+    .gallery-scroll img:hover {
+      transform: scale(1.05);
+    }
+    .gallery-section .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      transition: background-color 0.3s;
+    }
+    .gallery-section .arrow:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+    .gallery-section .arrow.left { left: 10px; }
+    .gallery-section .arrow.right { right: 10px; }
+    @media (max-width: 768px) {
+      .gallery-scroll {
+        width: 320px;
+      }
+      .gallery-scroll img {
+        width: 150px;
+        height: 90px;
+      }
+      .gallery-section .arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 1.4rem;
+        line-height: 28px;
+      }
     }
 
     /* CONTACT SECTION */
-    #contact {
-      align-items: center;
-    }
-    .contact-info {
+    #contact .contact-info {
       font-size: 20px;
-      font-weight: bold;
       margin-top: 20px;
     }
-    .contact-info a {
+    #contact .contact-info a {
       color: var(--text-color);
       text-decoration: none;
     }
-    .contact-info a:hover {
+    #contact .contact-info a:hover {
       text-decoration: underline;
     }
 
@@ -243,7 +353,35 @@
       background-color: var(--primary-color);
       text-align: center;
       padding: 20px;
-      margin-top: auto;
+      margin-top: 40px;
+      color: #fff;
+    }
+
+    /* MODAL for Fullscreen Gallery Images */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+    .modal .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -251,7 +389,12 @@
   <!-- NAVBAR -->
   <nav>
     <div class="logo">Tanka Raj Acharya</div>
-    <ul class="menu">
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="menu" id="nav-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#affiliations">Affiliations</a></li>
       <li><a href="#works">Works</a></li>
@@ -262,29 +405,53 @@
 
   <!-- HOME SECTION -->
   <section id="home">
+    <img src="images/profile.png" alt="Tanka Raj Acharya" class="profile-image">
     <div class="home-text">
       <h1>Tanka Raj Acharya</h1>
       <span>Entrepreneur | Social Activist | Artist</span>
     </div>
-    <img src="images/profile.png" alt="Tanka Raj Acharya" class="profile-image">
   </section>
 
   <!-- AFFILIATIONS SECTION -->
   <section id="affiliations">
     <h2>Affiliations</h2>
     <div class="affiliations-container">
+      <!-- Pathshala Nepal Foundation -->
       <div class="affiliation-item">
         <img src="images/pathshala.png" alt="Pathshala Nepal Foundation">
         <h3>Managing Director/Founder</h3>
+        <div class="affiliation-links">
+          <a href="https://pathshala.edu.np/" target="_blank" title="Website">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/domain.png" alt="Website">
+          </a>
+          <a href="https://www.facebook.com/pnf2002" target="_blank" title="Facebook">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook">
+          </a>
+        </div>
       </div>
+      <!-- Medhavi College -->
       <div class="affiliation-item">
         <img src="images/medhavi.png" alt="Medhavi College">
         <h3>Managing Director/Founder</h3>
+        <div class="affiliation-links">
+          <a href="https://medhavicollege.edu.np/" target="_blank" title="Website">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/domain.png" alt="Website">
+          </a>
+          <a href="https://www.facebook.com/medhavi.college" target="_blank" title="Facebook">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook">
+          </a>
+        </div>
       </div>
+      <!-- Sisnupani Nepal -->
       <div class="affiliation-item">
         <img src="images/sisnupani.jpg" alt="Sisnupani Nepal">
-        <h3>General Secretary & Founder</h3>
+        <h3>General Secretary &amp; Founder</h3>
         <p>A satirical platform dedicated to social transformation.</p>
+        <div class="affiliation-links">
+          <a href="https://www.youtube.com/@sisnupanicomedy" target="_blank" title="YouTube">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png" alt="YouTube">
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -293,51 +460,98 @@
   <section id="works">
     <h2>Works</h2>
 
-    <!-- Performances Subsection -->
+    <!-- Creative Performances Subsection -->
     <div class="work-subsection">
-      <h3>Performances (In Association with Sisnupani)</h3>
-      <div class="video-scroll">
-        <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk"></iframe>
-        <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
-        <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+      <h3>Creative Performances w/ Sisnupani Nepal</h3>
+      <p>A series of comedic and cultural performances in collaboration with Sisnupani Nepal.</p>
+      <div class="video-carousel">
+        <button class="arrow left" onclick="scrollLeft('performances')">&#10094;</button>
+        <div class="video-scroll" id="performances">
+          <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/7tBs-HdRuco" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/7tBs-HdRuco" allowfullscreen></iframe>
+        </div>
+        <button class="arrow right" onclick="scrollRight('performances')">&#10095;</button>
       </div>
     </div>
 
-    <!-- Interviews Subsection -->
+    <!-- In-depth Interviews Subsection -->
     <div class="work-subsection">
-      <h3>Interviews</h3>
-      <div class="video-scroll">
-        <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk"></iframe>
-        <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
-        <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+      <h3>In-depth Interviews</h3>
+      <p>Sit-down conversations and insights from Tanka Raj Acharya on various platforms.</p>
+      <div class="video-carousel">
+        <button class="arrow left" onclick="scrollLeft('interviews')">&#10094;</button>
+        <div class="video-scroll" id="interviews">
+          <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/7tBs-HdRuco" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/7tBs-HdRuco" allowfullscreen></iframe>
+        </div>
+        <button class="arrow right" onclick="scrollRight('interviews')">&#10095;</button>
       </div>
     </div>
 
-    <!-- Articles Subsection -->
+    <!-- Published Articles Subsection -->
     <div class="work-subsection">
-      <h3>Articles</h3>
-      <div class="video-scroll">
-        <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk"></iframe>
-        <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
-        <iframe src="https://www.youtube.com/embed/7tBs-HdRuco"></iframe>
+      <h3>Published Articles</h3>
+      <p>A curated selection of articles written or contributed to by Tanka Raj Acharya.</p>
+      <div class="video-carousel">
+        <button class="arrow left" onclick="scrollLeft('articles')">&#10094;</button>
+        <div class="video-scroll" id="articles">
+          <iframe src="https://www.youtube.com/embed/dxBpSv5Hvtk" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/7tBs-HdRuco" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/7tBs-HdRuco" allowfullscreen></iframe>
+        </div>
+        <button class="arrow right" onclick="scrollRight('articles')">&#10095;</button>
       </div>
     </div>
 
     <!-- Book Subsection -->
     <div class="work-subsection book-section">
       <h3>Book</h3>
-      <img src="images/book.png" alt="Toriko Ful" />
-      <p><strong>Toriko Ful</strong> - A collection of satirical poetry.</p>
+      <p>Tanka Raj Acharya’s published work in the realm of satirical poetry.</p>
+      <div class="video-carousel">
+        <!-- If you only have an image, you can remove the carousel and embed. 
+             Or if you have a video about the book, keep the iframe. -->
+        <img src="images/book.png" alt="Toriko Ful" style="width:200px; border-radius:10px;">
+      </div>
     </div>
   </section>
 
   <!-- GALLERY SECTION -->
   <section id="gallery">
     <h2>Gallery</h2>
-    <div class="gallery-container">
-      <img src="images/gallery1.jpg" alt="Gallery Photo 1" />
-      <img src="images/gallery2.jpg" alt="Gallery Photo 2" />
-      <img src="images/gallery3.jpg" alt="Gallery Photo 3" />
+    <!-- Antarctica Visit Section -->
+    <div class="gallery-section">
+      <h3>Antarctica Visit</h3>
+      <button class="arrow left" onclick="scrollLeft('antarctica')">&#10094;</button>
+      <div class="gallery-scroll" id="antarctica">
+        <img src="images/book.png" onclick="openModal(this.src)" alt="Antarctica 1">
+        <img src="images/medhavi.png" onclick="openModal(this.src)" alt="Antarctica 2">
+        <img src="images/pathshala.png" onclick="openModal(this.src)" alt="Antarctica 3">
+        <img src="images/profile.png" onclick="openModal(this.src)" alt="Antarctica 4">
+        <img src="images/sisnupani.jpg" onclick="openModal(this.src)" alt="Antarctica 5">
+      </div>
+      <button class="arrow right" onclick="scrollRight('antarctica')">&#10095;</button>
+    </div>
+
+    <!-- Everest Base Camp Section -->
+    <div class="gallery-section">
+      <h3>Everest Base Camp</h3>
+      <button class="arrow left" onclick="scrollLeft('everest')">&#10094;</button>
+      <div class="gallery-scroll" id="everest">
+        <img src="images/book.png" onclick="openModal(this.src)" alt="Everest 1">
+        <img src="images/medhavi.png" onclick="openModal(this.src)" alt="Everest 2">
+        <img src="images/pathshala.png" onclick="openModal(this.src)" alt="Everest 3">
+        <img src="images/profile.png" onclick="openModal(this.src)" alt="Everest 4">
+        <img src="images/sisnupani.jpg" onclick="openModal(this.src)" alt="Everest 5">
+      </div>
+      <button class="arrow right" onclick="scrollRight('everest')">&#10095;</button>
+    </div>
+
+    <!-- Fullscreen Modal for Gallery Images -->
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImg" alt="Expanded Image">
     </div>
   </section>
 
@@ -345,8 +559,7 @@
   <section id="contact">
     <h2>Contact</h2>
     <p class="contact-info">
-      Email:
-      <a href="mailto:tankarajacharya@gmail.com">tankarajacharya@gmail.com</a>
+      Email: <a href="mailto:tankarajacharya@gmail.com">tankarajacharya@gmail.com</a>
     </p>
   </section>
 
@@ -354,5 +567,73 @@
   <footer>
     <p>&copy; 2025 Tanka Raj Acharya. All Rights Reserved.</p>
   </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Hamburger menu toggle for mobile
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+        menu.style.flexDirection = "column";
+        menu.style.position = "absolute";
+        menu.style.top = "60px";
+        menu.style.right = "20px";
+        menu.style.backgroundColor = "var(--primary-color)";
+        menu.style.padding = "10px 20px";
+        menu.style.borderRadius = "8px";
+      }
+    }
+
+    // Scroll functions (circular for both videos & gallery)
+    function scrollLeft(id) {
+      const container = document.getElementById(id);
+      const scrollDistance = (id === "antarctica" || id === "everest") ? 515 : 300;
+
+      // If near the left edge, jump to far right
+      if (container.scrollLeft <= 5) {
+        container.scrollTo({
+          left: container.scrollWidth - container.clientWidth,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: -scrollDistance,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function scrollRight(id) {
+      const container = document.getElementById(id);
+      const scrollDistance = (id === "antarctica" || id === "everest") ? 515 : 300;
+
+      // If near the right edge, jump back to beginning
+      if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 5) {
+        container.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: scrollDistance,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Modal functions for fullscreen gallery images
+    function openModal(src) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      modal.style.display = "flex";
+      modalImg.src = src;
+    }
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
